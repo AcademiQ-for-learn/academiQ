@@ -1,0 +1,6 @@
+[submodule "academiQ-api"]
+	path = academiQ-api
+	url = git@github.com:Brennon-Oliveira/academiQ-api.git
+[submodule "academiQ-app"]
+	path = academiQ-app
+	url = git@github.com:Brennon-Oliveira/academiQ-app.git
