@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./academiQ-api
+      dockerfile: Dockerfile
+    ports:
+      - 7301:7301
+    volumes:
+      - ./academiQ-api:/app
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/academiq
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: academiq
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+
+  db:
+    image: postgres:16.1-alpine3.18
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./academiQ-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: academiq
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
