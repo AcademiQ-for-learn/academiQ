@@ -36,3 +36,17 @@ services:
     restart: always
     ports:
       - 8080:8080
+
+  app:
+    build:
+      context: ./academiQ-app
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+    volumes:
+      - ./academiQ-app:/app
+    depends_on:
+      - api
+    environment:
+      API_URL: http://localhost:7301
+      DEVELOPMENT: true
